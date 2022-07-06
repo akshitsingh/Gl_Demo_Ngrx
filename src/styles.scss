@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 0.15em solid currentColor;
+    border-right-color: transparent;
+    animation: .75s linear infinite spinner-border;
+}
+
+.is-invalid {
+    border: red 1px solid;
+}
+
+.spinner-grow{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}

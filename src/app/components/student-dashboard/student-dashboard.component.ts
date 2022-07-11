@@ -1,5 +1,4 @@
-import { UserAdd } from './../../store/actions/student.action';
- import { ActionstoreService } from './../../service/actionstore.service';
+  import { ActionstoreService } from './../../service/actionstore.service';
 import { ConfirmboxService } from './../../service/confirmbox.service';
 import { ToastService } from './../../service/toast.service';
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';

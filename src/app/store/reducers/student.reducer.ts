@@ -1,4 +1,4 @@
- import { USER_DELETE } from './../actions/student.action';
+ import { USER_ADD, USER_DELETE, USER_EDIT } from './../actions/student.action';
 import { USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_LIST_ERROR } from '../actions/student.action';
 import { Action } from '../actions/index';
 import { StudentModel } from "src/app/models/student.model";
@@ -29,6 +29,19 @@ export function userReducer(state=initialState,action:Action):userReducerState{
     case USER_LIST_SUCCESS:{
         const data = state.users.concat(action.payload.data)
         return {...state,loading:false,loaded : true,users:data,error:false}
+    }
+    case USER_ADD:{
+        const data = state.users.concat(action.payload.data)
+        return {...state,users:data,error:false}
+    }
+    case USER_EDIT:{
+        const updatedUser = state.users.map(
+            user => action.payload.data._id === user._id ? action.payload.data : user);
+            return {
+              ...state,
+              users: updatedUser
+            
+             };
     }
     case USER_DELETE:{
         const users = state.users.filter(item=>item._id!=action.payload.id)

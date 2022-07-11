@@ -16,7 +16,7 @@ export class UserListRequestAction{
 
 export class UserListSuccessAction{  
     readonly type=USER_LIST_SUCCESS
-    constructor(public payload : {data : StudentModel[]}){ }
+    constructor(public payload : {data : StudentModel}){ }
 }
 
 export class UserDelete{  
@@ -30,7 +30,7 @@ export class UserAdd{
 }
 
 export class UserDetail{  
-    readonly type=USER_ADD
+    readonly type=USER_DETAIL
     constructor(public payload : {id : string}){ }
 }
 

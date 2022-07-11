@@ -1,4 +1,4 @@
-import { UserDelete } from './../store/actions/student.action';
+import { UserDelete, UserEdit, UserListSuccessAction } from './../store/actions/student.action';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
@@ -19,6 +19,7 @@ export class ApiService {
   postStudent(data:StudentModel)
   {
     return this._http.post<StudentModel>(`${environment.API_URL}student/add`,data).pipe(map((res:any)=> {
+      this.store.dispatch(new UserListSuccessAction({data : data}))
       return res
     }))
   }
@@ -35,6 +36,7 @@ export class ApiService {
   putStudent(data:StudentModel, id:string)
   {
     return this._http.put<StudentModel>(`${environment.API_URL}student/${id}`,data).pipe(map((res:any)=> {
+      this.store.dispatch(new UserEdit({data}))
       return res
     }))
   }

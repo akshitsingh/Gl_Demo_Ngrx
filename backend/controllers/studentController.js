@@ -17,11 +17,12 @@ const Student = require('../models/student.model')
           })
     
         let data = await user.save();
+        console.log("data",data)
         if(!data){
             return res.status('500').json({success:false,message : 'something went wrong'})
         }
     
-        return res.status(200).json({success:true,message : 'student added successfully'})
+        return res.status(200).json({success:true,data,message : 'student added successfully'})
     
     }   
 ) 

@@ -19,7 +19,7 @@ export class ApiService {
   postStudent(data:StudentModel)
   {
     return this._http.post<StudentModel>(`${environment.API_URL}student/add`,data).pipe(map((res:any)=> {
-      this.store.dispatch(new UserListSuccessAction({data : data}))
+      this.store.dispatch(UserListSuccessAction({ user : res.data}))
       return res
     }))
   }
@@ -36,7 +36,7 @@ export class ApiService {
   putStudent(data:StudentModel, id:string)
   {
     return this._http.put<StudentModel>(`${environment.API_URL}student/${id}`,data).pipe(map((res:any)=> {
-      this.store.dispatch(new UserEdit({data}))
+      this.store.dispatch(UserEdit({payload : {data}}))
       return res
     }))
   }
@@ -44,7 +44,7 @@ export class ApiService {
   // Delete Method For delete Student
   deleteStudent(id:string){
     return this._http.delete<StudentModel>(`${environment.API_URL}student/${id}`).pipe(map((res:any)=> {
-      this.store.dispatch(new UserDelete({id}))
+      this.store.dispatch(UserDelete({id}))
       return res;
     }))
   }

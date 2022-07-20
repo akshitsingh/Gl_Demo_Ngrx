@@ -23,11 +23,11 @@ export class ActionstoreService {
 
     combineLatest([loading$,loaded$]).pipe(take(1)).subscribe(data=>{
       if(!data[0] && !data[1]){
-        this.store.dispatch(new UserListRequestAction())
+        this.store.dispatch(UserListRequestAction())
         this.api.getStudent().subscribe(res => {
-          this.store.dispatch(new UserListSuccessAction({data : res.data}))
+          this.store.dispatch(UserListSuccessAction({user : res.data}))
         },err=>{
-          this.store.dispatch(new UserListErrorAction()) 
+          this.store.dispatch(UserListErrorAction()) 
         })
       }
     })

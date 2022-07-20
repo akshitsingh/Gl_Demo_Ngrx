@@ -9,6 +9,7 @@ import { throttleTime } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { userReducerState } from 'src/app/store/reducers/student.reducer';
 import { ComponentStore } from '@ngrx/component-store';
+import { getUsers } from 'src/app/store/reducers';
   
 @Component({
   selector: 'app-student-dashboard',
@@ -34,7 +35,6 @@ export class StudentDashboardComponent implements OnInit {
 
   @ViewChild('closeModal') closeModal: ElementRef
 
-
   constructor(
      private formBuilder:FormBuilder,
      private api:ApiService,
@@ -46,6 +46,7 @@ export class StudentDashboardComponent implements OnInit {
     {}
 
   ngOnInit(): void {
+  
    this.initializeForm();
     this.AllStudent();
   }
@@ -80,8 +81,7 @@ export class StudentDashboardComponent implements OnInit {
     complete: () => {
       this.toastServ.successmsg('Student added successfully');
       this.loader = false;
-      // this.store.dispatch(new UserAdd())
-      // this.AllStudent();
+      document.getElementById("closeModalButton").click(); //close the modal
       this.formValue.reset();
     } })
 
@@ -93,6 +93,7 @@ export class StudentDashboardComponent implements OnInit {
    const loading$ = observer$[0];
    const error$ = observer$[2]
    userData$.subscribe(res=>{
+    console.log("userdata",res)
     this.allstudent = res
    })
    loading$.subscribe(res=>{
@@ -130,7 +131,8 @@ export class StudentDashboardComponent implements OnInit {
     this.api.putStudent(this.studentobj,this.studentobj._id).subscribe(res => {
       // alert("Data Updated");
       this.toastServ.successmsg('Student updated successfully');
-      this.AllStudent();
+      // this.AllStudent();
+      document.getElementById("closeModalButton").click();
       this.SaveShowBtn();
     },(err)=>{
       this.toastServ.errorsmsg(err);
@@ -140,11 +142,7 @@ export class StudentDashboardComponent implements OnInit {
 
   }
 
-  //close modal
-   resetModal(){
-    console.log("Resdkj")
-    this.formValue.reset();
-  }
+   
 
 
   DeleteStudent(data:any){
@@ -166,5 +164,8 @@ export class StudentDashboardComponent implements OnInit {
   }
 
 
+  resetModal(){
+    this.formValue.reset();
+  }
 
 }

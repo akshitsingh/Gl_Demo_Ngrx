@@ -48,7 +48,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{btnSaveShow ? 'Add' : 'Edit'}} Student</h5>
           <button type="button" class="close btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetModal()">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -94,7 +94,7 @@
               </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning"  data-bs-dismiss="modal">Close</button>
+          <button id="closeModalButton" type="button" class="btn btn-warning"  data-bs-dismiss="modal" #closeModal>Close</button>
           <button *ngIf="btnSaveShow" type="button" class="btn btn-primary" (click)="AddStudent()" >
             <app-spinner *ngIf="loader"></app-spinner> Register</button>
           <button *ngIf="btnUpdateShow" type="button" class="btn btn-primary" (click)="UpdateStudent()" >
